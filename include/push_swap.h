@@ -36,12 +36,9 @@ typedef struct s_root
 	t_item	*b;
 	int		a_am;
 	int		b_am;
-	t_item		*b_max;
-	t_item		*b_min;
+	t_item	*b_max;
+	t_item	*b_min;
 }	t_root;
-
-# define FRONT 1
-# define BACK 2
 
 t_item	*item_new(int n);
 void	item_push(t_item **stack, t_item *new);
@@ -65,8 +62,10 @@ void	ft_rrb(t_root *root);
 void	ft_rrr(t_root *root);
 
 void	sort_stack(t_root *root);
+void	push_cheapest(t_root *root, int a, int b);
+t_pair	find_cheapest(t_root *root);
 
-//PRINTER FOR DEBUGGING PURPOSES!!! CLEAN AFTERWARDS
-void	print_stacks(t_root *root);
+int		ft_min(int a, int b);
+void	update_min_max(t_root *root);
 
 #endif
