@@ -6,7 +6,7 @@
 #    By: ndo-vale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/21 15:06:49 by ndo-vale          #+#    #+#              #
-#    Updated: 2024/05/21 15:13:13 by ndo-vale         ###   ########.fr        #
+#    Updated: 2024/05/23 08:37:21 by ndo-vale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRC_DIR	= src
 SRCS		= $(SRC_DIR)/main.c $(SRC_DIR)/stack_operations.c \
 			$(SRC_DIR)/parse_stack.c $(SRC_DIR)/swappers.c \
 			$(SRC_DIR)/pushers.c $(SRC_DIR)/rotaters.c \
-			$(SRC_DIR)/reverse_rotaters.c
+			$(SRC_DIR)/reverse_rotaters.c $(SRC_DIR)/sort_stack.c \
+			$(SRC_DIR)/print_stacks.c
 SRC_BONUS_DIR	= src_bonus
 SRCS_BONUS	= $(SRC_BONUS_DIR)/main.c
 OBJS		= $(SRCS:.c=.o)

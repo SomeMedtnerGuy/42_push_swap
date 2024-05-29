@@ -6,7 +6,7 @@
 /*   By: ndo-vale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:11:23 by ndo-vale          #+#    #+#             */
-/*   Updated: 2024/05/22 19:46:30 by ndo-vale         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:35:59 by ndo-vale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	parse_stacks(char **items, t_root *root)
 
 	root->a_am = 0;
 	root->b_am = 0;
+	root->a = NULL;
 	root->b = NULL;
 	while (*(++items))
 	{
@@ -31,8 +32,8 @@ void	parse_stacks(char **items, t_root *root)
 		if (n_already_exists(root, n))
 			free_and_exit(root);
 		new = item_new(ft_strict_atoi(*items));
-		item_add(&root->a, new);
-		ft_ra(root);
+		item_push(&root->a, new);
+		root->a = root->a->next;
 		root->a_am++;
 		if (!new || (new->n == 0 && !is_n_zero(*items)))
 			free_and_exit(root);
@@ -95,7 +96,7 @@ static int	n_already_exists(t_root *root, int n)
 
 static void	free_and_exit(t_root *root)
 {
-	ft_printf("Error\n");
+	write(2, "Error\n", 6);
 	free_stack(root->a, root->a_am);
 	exit(0);
 }

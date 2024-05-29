@@ -6,7 +6,7 @@
 /*   By: ndo-vale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:41:07 by ndo-vale          #+#    #+#             */
-/*   Updated: 2024/05/22 17:51:52 by ndo-vale         ###   ########.fr       */
+/*   Updated: 2024/05/23 17:34:49 by ndo-vale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_item	*item_new(int n)
 	return (item);
 }
 
-void	item_add(t_item **stack, t_item *new)
+void	item_push(t_item **stack, t_item *new)
 {
 	if (!new || !stack)
 		return ;
@@ -44,14 +44,21 @@ void	item_add(t_item **stack, t_item *new)
 	*stack = new;
 }
 
-t_item	*item_remove(t_item **stack)
+t_item	*item_pop(t_item **stack)
 {
 	t_item	*item;
 
+	if (!stack)
+		return (NULL);
 	item = *stack;
-	item->prev->next = item->next;
-	item->next->prev = item->prev;
-	*stack = item->next;
+	if (item->next == item)
+		*stack = NULL;
+	else
+	{
+		item->prev->next = item->next;
+		item->next->prev = item->prev;
+		*stack = item->next;
+	}
 	item->next = NULL;
 	item->prev = NULL;
 	return (item);
