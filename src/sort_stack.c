@@ -43,7 +43,7 @@ static void	return_to_a(t_root *root)
 		ft_rra(root);
 }
 
-static void	initial_check(t_root *root)
+static int	immediately_solved(t_root *root)
 {
 	t_item	*iptr;
 
@@ -52,10 +52,10 @@ static void	initial_check(t_root *root)
 	{
 		iptr = iptr->next;
 		if (iptr->next == root->a)
-			exit(0);
+			return (1);
 	}
 	if (root->a_am > 3)
-		return ;
+		return (0);
 	else if (root->a_am == 2)
 	{
 		if (root->a->n > root->a->next->n)
@@ -63,7 +63,7 @@ static void	initial_check(t_root *root)
 	}
 	else if (root->a_am == 3)
 		sort3(root);
-	exit(0);
+	return (1);
 }
 
 static void	place_max_on_top(t_root *root)
@@ -88,7 +88,8 @@ void	sort_stack(t_root *root)
 {
 	t_pair	opt;
 
-	initial_check(root);
+	if (immediately_solved(root))
+		return ;
 	ft_pb(root);
 	root->b_max = root->b;
 	root->b_min = root->b;

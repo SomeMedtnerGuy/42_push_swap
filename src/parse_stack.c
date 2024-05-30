@@ -26,7 +26,7 @@ void	parse_stacks(char **items, t_root *root)
 	root->b_am = 0;
 	root->a = NULL;
 	root->b = NULL;
-	while (*(++items))
+	while (*items)
 	{
 		n = ft_strict_atoi(*items);
 		if (n_already_exists(root, n))
@@ -37,6 +37,7 @@ void	parse_stacks(char **items, t_root *root)
 		root->a_am++;
 		if (!new || (new->n == 0 && !is_n_zero(*items)))
 			free_and_exit(root);
+		items++;
 	}
 }
 
