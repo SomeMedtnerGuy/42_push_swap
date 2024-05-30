@@ -6,7 +6,7 @@
 /*   By: ndo-vale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:22:03 by ndo-vale          #+#    #+#             */
-/*   Updated: 2024/05/27 17:07:33 by ndo-vale         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:18:45 by ndo-vale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,8 @@ t_pair	find_cheapest(t_root *root);
 
 int		ft_min(int a, int b);
 void	update_min_max(t_root *root);
+int		find_i_from_n(t_item *first, int n);
+
+void	print_stacks(t_root *root);
 
 #endif

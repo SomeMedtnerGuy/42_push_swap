@@ -6,7 +6,7 @@
 #    By: ndo-vale <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/21 15:06:49 by ndo-vale          #+#    #+#              #
-#    Updated: 2024/05/23 08:37:21 by ndo-vale         ###   ########.fr        #
+#    Updated: 2024/05/29 19:18:09 by ndo-vale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS		= $(SRC_DIR)/main.c $(SRC_DIR)/stack_operations.c \
 			$(SRC_DIR)/pushers.c $(SRC_DIR)/rotaters.c \
 			$(SRC_DIR)/reverse_rotaters.c $(SRC_DIR)/sort_stack.c \
 			$(SRC_DIR)/push_cheapest.c $(SRC_DIR)/find_cheapest.c \
-			$(SRC_DIR)/utils.c
+			$(SRC_DIR)/utils.c $(SRC_DIR)/print_stacks.c
 OBJS		= $(SRCS:.c=.o)
 
 LIBFT_DIR = ./libft

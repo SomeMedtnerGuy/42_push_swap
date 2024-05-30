@@ -6,7 +6,7 @@
 /*   By: ndo-vale <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:52:26 by ndo-vale          #+#    #+#             */
-/*   Updated: 2024/05/29 16:48:44 by ndo-vale         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:22:46 by ndo-vale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,55 @@ static void	return_to_a(t_root *root)
 	count = 3;
 	while (root->b)
 	{
-		if (root->a->prev->n > root->b->n && count)
+		while (root->a->prev->n > root->b->n && count)
 		{
 			ft_rra(root);
 			count--;
 		}
 		ft_pa(root);
+	}
+	while (root->a->n > root->a->prev->n)
+		ft_rra(root);
+}
+
+static void	initial_check(t_root *root)
+{
+	t_item	*iptr;
+
+	iptr = root->a;
+	while (iptr->n < iptr->next->n)
+	{
+		iptr = iptr->next;
+		if (iptr->next == root->a)
+			exit(0);
+	}
+	if (root->a_am > 3)
+		return ;
+	else if (root->a_am == 2)
+	{
+		if (root->a->n > root->a->next->n)
+			ft_ra(root);
+	}
+	else if (root->a_am == 3)
+		sort3(root);
+	exit(0);
+}
+
+static void	place_max_on_top(t_root *root)
+{
+	int	i;
+
+	i = find_i_from_n(root->b, root->b_max->n);
+	if (i < root->b_am / 2)
+	{
+		while (i--)
+			ft_rb(root);
+	}
+	else
+	{
+		i = root->b_am - i;
+		while (i--)
+			ft_rrb(root);
 	}
 }
 
@@ -45,21 +88,24 @@ void	sort_stack(t_root *root)
 {
 	t_pair	opt;
 
+	initial_check(root);
 	ft_pb(root);
 	root->b_max = root->b;
 	root->b_min = root->b;
-	if (root->a->n > root->b_max->n)
-		root->b_max = root->a;
-	else
-		root->b_min = root->a;
-	ft_pb(root);
+	if (root->a_am > 3)
+	{
+		if (root->a->n > root->b_max->n)
+			root->b_max = root->a;
+		else
+			root->b_min = root->a;
+		ft_pb(root);
+	}
 	while (root->a_am > 3)
 	{
 		opt = find_cheapest(root);
 		push_cheapest(root, opt.a, opt.b);
 	}
 	sort3(root);
-	while (root->b != root->b_max)
-		ft_rb(root);
+	place_max_on_top(root);
 	return_to_a(root);
 }

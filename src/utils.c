@@ -26,3 +26,18 @@ void	update_min_max(t_root *root)
 	else if (root->b->n > root->b_max->n)
 		root->b_max = root->b;
 }
+
+int	find_i_from_n(t_item *first, int n)
+{
+	t_item	*iptr;
+	int		i;
+
+	iptr = first;
+	i = 0;
+	while (n != iptr->n)
+	{
+		iptr = iptr->next;
+		i++;
+	}
+	return (i);
+}

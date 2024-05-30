@@ -12,21 +12,6 @@
 
 #include "../include/push_swap.h"
 
-static int	find_i_from_n(t_item *first, int n)
-{
-	t_item	*iptr;
-	int		i;
-
-	iptr = first;
-	i = 0;
-	while (n != iptr->n)
-	{
-		iptr = iptr->next;
-		i++;
-	}
-	return (i);
-}
-
 static int	get_idest(t_root *root, t_item *aptr)
 {
 	t_item	*iptr;
