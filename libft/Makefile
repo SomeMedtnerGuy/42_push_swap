@@ -26,17 +26,22 @@ SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
 	  ft_lstclear.c ft_lstiter.c ft_lstmap.c
 OBJS	= $(SRCS:.c=.o)
 
+.o:.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(SRCS)
-	ar -rcs $(NAME) $(OBJS)
+	@$(CC) $(CFLAGS) $(SRCS)
+	@ar -rcs $(NAME) $(OBJS)
 
 all: $(NAME)
 
 clean:
-	rm -rf $(OBJS) $(BOBJS)
+	@rm -rf $(OBJS) $(BOBJS)
 
 fclean: clean
-	rm -rf libft.a
+	@rm -rf libft.a
 
 re: fclean
-	$(MAKE) all
+	@$(MAKE) all
+
+.SILENT:

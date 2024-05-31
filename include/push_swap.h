@@ -43,8 +43,9 @@ typedef struct s_root
 t_item	*item_new(int n);
 void	item_push(t_item **stack, t_item *new);
 t_item	*item_pop(t_item **stack);
-void	parse_stacks(char **items, t_root *root);
+void	parse_stacks(char **items, t_root *root, int flag);
 void	free_stack(t_item *stack, int size);
+void	free_ints(char **ints);
 
 void	ft_sa(t_root *root);
 void	ft_sb(t_root *root);
@@ -68,7 +69,5 @@ t_pair	find_cheapest(t_root *root);
 int		ft_min(int a, int b);
 void	update_min_max(t_root *root);
 int		find_i_from_n(t_item *first, int n);
-
-void	print_stacks(t_root *root);
 
 #endif

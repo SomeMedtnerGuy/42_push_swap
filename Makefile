@@ -21,7 +21,7 @@ SRCS		= $(SRC_DIR)/main.c $(SRC_DIR)/stack_operations.c \
 			$(SRC_DIR)/pushers.c $(SRC_DIR)/rotaters.c \
 			$(SRC_DIR)/reverse_rotaters.c $(SRC_DIR)/sort_stack.c \
 			$(SRC_DIR)/push_cheapest.c $(SRC_DIR)/find_cheapest.c \
-			$(SRC_DIR)/utils.c $(SRC_DIR)/print_stacks.c
+			$(SRC_DIR)/utils.c
 OBJS		= $(SRCS:.c=.o)
 
 LIBFT_DIR = ./libft
@@ -30,7 +30,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 all: $(NAME)
 
 $(LIBFT):
-	make -C $(LIBFT_DIR)
+	make -s -C $(LIBFT_DIR)
 
 $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
@@ -39,11 +39,11 @@ $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	make clean -C $(LIBFT_DIR)
+	make -s clean -C $(LIBFT_DIR)
 	$(RM) $(OBJS)
 
 fclean: clean
-	make fclean -C $(LIBFT_DIR)
+	make -s fclean -C $(LIBFT_DIR)
 	$(RM) $(NAME)
 
 re: fclean all

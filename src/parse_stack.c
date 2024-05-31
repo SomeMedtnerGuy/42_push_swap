@@ -17,7 +17,7 @@ static int		is_n_zero(char *nptr);
 static int		n_already_exists(t_root *root, int n);
 static void		free_and_exit(t_root *root);
 
-void	parse_stacks(char **items, t_root *root)
+void	parse_stacks(char **items, t_root *root, int flag)
 {
 	t_item	*new;
 	int		n;
@@ -36,7 +36,11 @@ void	parse_stacks(char **items, t_root *root)
 		root->a = root->a->next;
 		root->a_am++;
 		if (!new || (new->n == 0 && !is_n_zero(*items)))
+		{
+			if (flag)
+				free_ints(items);
 			free_and_exit(root);
+		}
 		items++;
 	}
 }
@@ -56,8 +60,9 @@ static int	ft_strict_atoi(char *nptr)
 	n = 0;
 	while (*nptr >= '0' && *nptr <= '9')
 	{
-		n = n * 10 + *nptr - 48;
-		nptr += 1;
+		if (n < INT_MIN || n > INT_MAX)
+			return (0);
+		n = n * 10 + *nptr++ - 48;
 	}
 	if (*nptr != '\0')
 		return (0);

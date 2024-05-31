@@ -26,7 +26,7 @@ void	free_stack(t_item *item, int size)
 	}
 }
 
-static void	free_ints(char **ints)
+void	free_ints(char **ints)
 {
 	int	i;
 
@@ -54,7 +54,7 @@ int	main(int argc, char **argv)
 		ints = argv + 1;
 		mflag = 0;
 	}
-	parse_stacks(ints, &root);
+	parse_stacks(ints, &root, mflag);
 	sort_stack(&root);
 	free_stack(root.a, root.a_am);
 	free_stack(root.b, root.b_am);
