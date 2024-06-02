@@ -55,9 +55,8 @@ int	main(int argc, char **argv)
 		mflag = 0;
 	}
 	parse_stacks(ints, &root, mflag);
-	sort_stack(&root);
-	free_stack(root.a, root.a_am);
-	free_stack(root.b, root.b_am);
 	if (mflag)
 		free_ints(ints);
+	sort_stack(&root);
+	free_stack(root.a, root.a_am);
 }

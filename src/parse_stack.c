@@ -9,13 +9,13 @@
 /*   Updated: 2024/05/23 17:35:59 by ndo-vale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <stdio.h>
 #include "../include/push_swap.h"
 
 static int		ft_strict_atoi(char *nptr);
 static int		is_n_zero(char *nptr);
 static int		n_already_exists(t_root *root, int n);
-static void		free_and_exit(t_root *root);
+static void		free_and_exit(t_root *root, char **items, int flag);
 
 void	parse_stacks(char **items, t_root *root, int flag)
 {
@@ -26,21 +26,19 @@ void	parse_stacks(char **items, t_root *root, int flag)
 	root->b_am = 0;
 	root->a = NULL;
 	root->b = NULL;
+	if (!(*items))
+		free_and_exit(root, items, flag);
 	while (*items)
 	{
 		n = ft_strict_atoi(*items);
 		if (n_already_exists(root, n))
-			free_and_exit(root);
+			free_and_exit(root, items, flag);
 		new = item_new(ft_strict_atoi(*items));
 		item_push(&root->a, new);
 		root->a = root->a->next;
 		root->a_am++;
 		if (!new || (new->n == 0 && !is_n_zero(*items)))
-		{
-			if (flag)
-				free_ints(items);
-			free_and_exit(root);
-		}
+			free_and_exit(root, items, flag);
 		items++;
 	}
 }
@@ -100,9 +98,11 @@ static int	n_already_exists(t_root *root, int n)
 	return (0);
 }
 
-static void	free_and_exit(t_root *root)
+static void	free_and_exit(t_root *root, char **items, int flag)
 {
 	write(2, "Error\n", 6);
 	free_stack(root->a, root->a_am);
+	if (flag)
+		free_ints(items);
 	exit(0);
 }
